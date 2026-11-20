@@ -1,0 +1,25 @@
+# app/models/review.py
+
+from sqlalchemy import Column, String, ForeignKey
+from .base_model import BaseModel
+from sqlalchemy.orm import relationship
+
+class Review(BaseModel):
+    __tablename__ = "reviews"
+
+    user_id = Column(String(60), ForeignKey("users.id"), nullable=False)
+    manhwa_id = Column(String(60), ForeignKey("manhwas.id"), nullable=False)
+    text = Column(String(512), nullable=False)
+
+    user = relationship("User", back_populates="reviews")
+    manhwa = relationship("Manhwa", back_populates="reviews")
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "manhwa_id": self.manhwa_id,
+            "text": self.text,
+            "created_at": self.created_at.isoformat() if self.created_at else None,
+            "updated_at": self.updated_at.isoformat() if self.updated_at else None
+        }
