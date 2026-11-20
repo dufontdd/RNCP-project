@@ -3,11 +3,12 @@
 import os
 from datetime import timedelta
 
+
 class Config:
-    """Configuration générale pour l'application HBnB"""
+    """Configuration générale pour l'application Manhwa"""
 
     # ---------------- Flask / SQLAlchemy ----------------
-    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL", "sqlite:///hbnb.db")
+    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL", "sqlite:///manhwa.db")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # ---------------- JWT ----------------

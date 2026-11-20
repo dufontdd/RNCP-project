@@ -1,7 +1,8 @@
+import os
 from app import create_app
 
 app = create_app()
 
 if __name__ == "__main__":
-    # debug=True pour rechargement automatique et affichage des erreurs
-    app.run(debug=True)
+    # Debug activé uniquement si FLASK_DEBUG=1 (jamais en production)
+    app.run(debug=os.getenv("FLASK_DEBUG") == "1")
